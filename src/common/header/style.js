@@ -24,12 +24,16 @@ export const Nav = styled.div`
     
 `
 export const NavItem = styled.div`
-     line-height: 56px;
-     padding: 0 15px;
+     line-height: 58px;
+     padding: 0px 15px;
      font-size: 17px;
      color: #333;
+     cursor: pointer;
      &.left{
          float: left;
+     }
+     &.download:hover{
+         background-color: #f5f5f5
      }
      &.right{
         float: right;
@@ -43,6 +47,18 @@ export const SearchWrapper = styled.div`
      
      float:left;
      position: relative;
+     .slide-enter{
+        transition: all .2s ease-out;
+     }
+     .slide-enter-active{
+        width: 240px
+     }
+     .slide-exit{
+        transition: all .2s ease-out;
+     }
+     .slide-exit-active{
+        width: 160px;
+     }
      .iconfont{
          position: absolute;
          right: 5px;
@@ -52,6 +68,10 @@ export const SearchWrapper = styled.div`
          border-radius: 15px;
          xbackground: green;
          text-align: center;
+         &.focused{
+             color: white;
+             background-color: #777;
+         }
      }
 `
 export const NavSearch = styled.input.attrs({
@@ -61,7 +81,7 @@ export const NavSearch = styled.input.attrs({
     font-size: 14px;
     margin-top: 9px;
     margin-left: 20px;
-    padding: 0 20px;
+    padding: 0 30px 0 20px;
     width:160px;
     height: 38px;
     border: none;
@@ -70,6 +90,9 @@ export const NavSearch = styled.input.attrs({
     background-color: #eee
     &::placeholder{
         color: #969696
+    }
+    &.focused{
+        width: 240px;
     }
 `
 export const Addition = styled.div`
@@ -91,7 +114,16 @@ export const Button = styled.div`
     &.reg{
         color: #ec6149;
     }
+    &.reg:hover{
+        color: #ec6149;
+        border-color: #ec6149;
+        background-color: rgba(236,97,73,.05);
+    }
     &.writing{
+        background-color: #ea6f5a;
+        color: white;
+    }
+    &.writing:hover{
         background-color: #ec6149;
         color: white;
     }
