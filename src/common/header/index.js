@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {connect} from 'react-redux'
 import {GlobalStyle} from "../../resource/iconfont/iconfont"
 import {
     HeaderWrapper,
@@ -11,24 +12,8 @@ import {
     SearchWrapper
 } from './style'
 import {CSSTransition} from 'react-transition-group'
-class Header extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            focused: false,
-        }
-    }
-    handleFocus = ()=>{
-        this.setState({
-            focused: true
-        })
-    }
-    handleBlur = ()=>{
-        this.setState({
-            focused: false
-        })
-    }
-    render(){
+const Header = (props) => {
+    
         return (
            
            <HeaderWrapper>
@@ -43,14 +28,14 @@ class Header extends Component{
                    </NavItem>
                    <SearchWrapper>
                         <CSSTransition 
-                            in={this.state.focused}
+                            in={props.focused}
                             timeout={200}
                             classNames="slide"
                         >
-                            <NavSearch onFocus={this.handleFocus} onBlur={this.handleBlur} className={this.state.focused? 'focused' : ''}></NavSearch>
+                            <NavSearch onFocus={props.handleFocus} onBlur={props.handleBlur} className={props.focused? 'focused' : ''}></NavSearch>
                            
                         </CSSTransition>
-                        <i  className={this.state.focused? 'focused iconfont' : 'iconfont'}>&#xe600;</i>
+                        <i  className={props.focused? 'focused iconfont' : 'iconfont'}>&#xe600;</i>
                     </SearchWrapper>
                </Nav>
                <Addition>
@@ -63,5 +48,26 @@ class Header extends Component{
            </HeaderWrapper>
         )
     }
+
+const mapStateToProps = (state)=>{
+        return {
+           focused: state.focused
+        }
 }
-export default  Header
+const mapDispatchToProps = (dispatch) =>{
+    return {
+        handleFocus(){
+            const action = {
+                type: 'search_focus'
+            };
+            dispatch(action)
+        },
+        handleBlur(){
+            const action = {
+                type: 'search_blur'
+            };
+            dispatch(action)
+        }
+    }
+}
+export default  connect(mapStateToProps,mapDispatchToProps)(Header)
