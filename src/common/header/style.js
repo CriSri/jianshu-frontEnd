@@ -111,13 +111,21 @@ export const SearchInfoTitle = styled.div`
     line-height: 20px;
     font-size: 14px;
     color: #969696
+    span:hover{
+        color:#2f2f2f
+    }
 `
 export const SearchInfoSwitch = styled.span`
     float: right;
     font-size: 13px;
+    cursor: pointer;
     .spin{
+        display: block;
+        float: left;
         font-size: 12px;
         margin-right: 2px;
+        transition: all .3s ease-out;
+        tranform-origin: center center;
     }
 `
 export const SearchInfoItem = styled.a`
