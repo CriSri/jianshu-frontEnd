@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux'
+import { toJS } from 'immutable'
 import {GlobalStyle} from "../../resource/iconfont/iconfont"
 import {
     HeaderWrapper,
@@ -20,17 +21,30 @@ import {CSSTransition} from 'react-transition-group'
 import { stat } from 'fs';
 class Header extends Component{
     getListArea = (show)=>{
-        if(show){
-            return <SearchInfo>
+        const {page,focused,list,mouseIn,totalpage,handleMouseEnter,handleMouseLeave,handleChangePage} = this.props
+        let pageList = [];  
+        let newList = list.toJS();
+        if(newList.length){
+            for(let i = (page - 1) * 10; i < page * 10;i++){
+                pageList.push(
+                    <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+                )
+            }
+        }
+       
+        if(show || mouseIn){
+            return <SearchInfo onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                         <SearchInfoTitle>
                                     热门搜索
-                        <SearchInfoSwitch>换一批</SearchInfoSwitch>
+                            
+                            <SearchInfoSwitch onClick={() => handleChangePage(page,totalpage)}>
+                                <i className="iconfont spin">&#xe851;</i>换一批
+                            </SearchInfoSwitch>
                         </SearchInfoTitle>
                                 <div style={{overflow: 'hidden'}}>
-                                    
-                                    {this.props.list.map((item)=>{
-                                        return <SearchInfoItem key={item}>{item}</SearchInfoItem>
-                                    })}
+                                    {
+                                        pageList
+                                    }
                                 </div>
                             </SearchInfo>
         }else {
@@ -58,7 +72,7 @@ class Header extends Component{
                             <NavSearch onFocus={this.props.handleFocus} onBlur={this.props.handleBlur} className={this.props.focused? 'focused' : ''}></NavSearch>
                            
                         </CSSTransition>
-                        <i  className={this.props.focused? 'focused iconfont' : 'iconfont'}>&#xe600;</i>
+                        <i  className={this.props.focused? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe600;</i>
                         {this.getListArea(this.props.focused)}
                     </SearchWrapper>
                </Nav>
@@ -78,7 +92,10 @@ class Header extends Component{
 const mapStateToProps = (state)=>{
         return {
            focused: state.getIn(['header','focused']),
-           list: state.getIn(['header','list'])
+           list: state.getIn(['header','list']),
+           page: state.get('header').get('page'),
+           mouseIn: state.getIn(['header','mouseIn']),
+           totalpage: state.getIn(['header','totalpage'])
         }
 }
 const mapDispatchToProps = (dispatch) =>{
@@ -89,6 +106,19 @@ const mapDispatchToProps = (dispatch) =>{
         },
         handleBlur(){
             dispatch(actionCreators.searchBlur())
+        },
+        handleMouseEnter(){
+            dispatch(actionCreators.mouseEnter())
+        },
+        handleMouseLeave(){
+            dispatch(actionCreators.mouseLeave())
+        },
+        handleChangePage(page,totalpage){
+            if(page < totalpage){
+                dispatch(actionCreators.changePage(page + 1))
+            }else if(page == totalpage){
+                dispatch(actionCreators.changePage(1))
+            }
         }
     }
 }
