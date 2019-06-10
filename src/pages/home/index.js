@@ -4,12 +4,23 @@ import {
     HomeWrapper,
     HomeLeft,
     HomeRight,
+    BackTop
 } from './style'
 import {connect} from 'react-redux'
 import * as actionCreators from './store/actionCreators'
  class Home extends Component {
     componentDidMount(){
       this.props.change_home_data()
+      this.bindEvents()
+    }
+    componentWillUnmount(){
+        window.removeEventListener('scroll',this.props.changeScrollTopShow)
+    }
+    bindEvents =() => {
+        window.addEventListener('scroll',this.props.changeScrollTopShow)
+    }
+    handleScrollTop = () => {
+        window.scrollTo(0,0)
     }
     render(){
         return (
@@ -23,6 +34,14 @@ import * as actionCreators from './store/actionCreators'
                     <Recommend></Recommend>
                     <Writer></Writer>
                 </HomeRight>
+                {
+                    this.props.showScroll ? 
+                            <BackTop onClick={this.handleScrollTop}>
+                            顶部
+                         </BackTop> : null
+
+                }
+                
             </HomeWrapper>
         )
     }
@@ -30,10 +49,20 @@ import * as actionCreators from './store/actionCreators'
 // const mapStateToProps = ({
 
 // })
+const mapState = (state) => ({
+    showScroll: state.getIn(['home','showScroll'])
+})
 const DispatchActionToProps =(dispatch) =>  ({
     change_home_data(){
       const action = actionCreators.getHomeInfo();
       dispatch(action)
+    },
+    changeScrollTopShow(){
+        if(document.documentElement.scrollTop > 100){
+            dispatch(actionCreators.toggleTopShow(true))
+        } else {
+            dispatch(actionCreators.toggleTopShow(false))
+        }
     }
 })
-export default connect(null,DispatchActionToProps)(Home)
+export default connect(mapState,DispatchActionToProps)(Home)

@@ -108,3 +108,13 @@ export const LoadMore = styled.div`
         background-color: #979797
     }
 `
+export const BackTop = styled.div`
+    position: fixed;
+    right : 100px;
+    bottom: 100px;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height:60px;
+    background: green;
+`

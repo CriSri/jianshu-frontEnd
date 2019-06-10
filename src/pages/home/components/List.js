@@ -5,6 +5,7 @@ import {
     ListInfo,
     LoadMore,
 } from '../style'
+import * as actionCreators from '../store/actionCreators'
 class List extends Component {
     render(){
         return (
@@ -22,7 +23,7 @@ class List extends Component {
                         </ListWrapper>
                    )})
                 }
-                <LoadMore>加载更多</LoadMore>
+                <LoadMore onClick={this.props.getMoreList}>加载更多</LoadMore>
             </div>
         )
     }
@@ -30,4 +31,10 @@ class List extends Component {
 const mapState = (state)=>({
     articleList: state.getIn(['home','articleList'])
 });
-export default connect(mapState,null)(List)
+const mapDispatch = (dispatch) => ({
+    getMoreList(){
+        const action = actionCreators.getMoreList()
+        dispatch(action)
+    }
+})
+export default connect(mapState,mapDispatch)(List)

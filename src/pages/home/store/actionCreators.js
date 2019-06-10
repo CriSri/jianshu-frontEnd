@@ -1,5 +1,6 @@
 import axios from 'axios'
-import {CHANGE_HOME_DATA } from "./constants"
+import {CHANGE_HOME_DATA , ADD_ARTICLE_LIST,TOGGLE_TOP_SHOW} from "./constants"
+import {fromJS} from 'immutable'
 export const getHomeInfo = ()=> {
     return (dispatch) => {
     axios.get('/api/home.json')
@@ -20,3 +21,23 @@ export const getHomeInfo = ()=> {
         
     }
 }
+const addHomeList = (list) => ({
+    type: ADD_ARTICLE_LIST,
+    list: fromJS(list)
+})
+export const getMoreList = () => {
+    return (dispatch)=> {
+        axios.get('/api/homeList.json')
+        .then((res)=>{
+            const result = res.data.data
+            dispatch(addHomeList(result))
+        })
+        .catch((error)=>[
+            console.log('error')
+        ])
+    }
+}
+export const toggleTopShow = (show) => ({
+    type: TOGGLE_TOP_SHOW,
+    show
+})
