@@ -1,4 +1,4 @@
-import React ,{Component} from 'react'
+import React ,{PureComponent} from 'react'
 import {List,Topic,Writer,Recommend} from './components'
 import {
     HomeWrapper,
@@ -8,7 +8,7 @@ import {
 } from './style'
 import {connect} from 'react-redux'
 import * as actionCreators from './store/actionCreators'
- class Home extends Component {
+ class Home extends PureComponent {
     componentDidMount(){
       this.props.change_home_data()
       this.bindEvents()

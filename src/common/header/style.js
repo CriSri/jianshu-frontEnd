@@ -3,15 +3,16 @@ import logoPic from '../../resource/logo.png'
 export const HeaderWrapper = styled.div`
     height: 58px;
     border-bottom: 1px solid #f0f0f0;
+    box-sizing: border-box;
 `
-export const Logo = styled.a`
-    height: 58px;
+export const Logo = styled.div`
+
     position:absolute;
     top:0;
     left:0;
     display:block;
     width:100px;
-    height:50px;
+    height:58px;
     background: url(${logoPic});
     background-size: contain;
 `
@@ -144,15 +145,16 @@ export const Addition = styled.div`
     position: absolute;
     right: 0;
     top: 0;
-    height: 56px;
+    height: 58px;
+    box-sizing: border-box;
 
 `
 export const Button = styled.div`
     float:right;
     cursor: pointer;
-    line-height:38px;
+    line-height:39px;
     padding: 0 20px;
-    margin-top: 12px;
+    margin-top: 15px;
     margin-right: 20px;
     border: 1px solid #ec6149;
     border-radius: 19px;

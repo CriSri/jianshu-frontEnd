@@ -1,6 +1,5 @@
 import { fromJS } from 'immutable'
 import { CHANGE_HOME_DATA, ADD_ARTICLE_LIST, TOGGLE_TOP_SHOW } from './constants';
-import { stat } from 'fs';
 const defaultState = fromJS({
     topicList: [],
     articleList: [],

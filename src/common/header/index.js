@@ -18,7 +18,7 @@ import {
 } from './style'
 import {actionCreators} from './store'
 import {CSSTransition} from 'react-transition-group'
-import { stat } from 'fs';
+import {Link  } from 'react-router-dom'
 class Header extends Component{
     getListArea = (show)=>{
         const {page,focused,list,mouseIn,totalpage,handleMouseEnter,handleMouseLeave,handleChangePage} = this.props
@@ -55,7 +55,9 @@ class Header extends Component{
         return(
          <HeaderWrapper>
                <GlobalStyle/>
-               <Logo/>
+               <Link to="/">
+                <Logo/>
+               </Link>
                <Nav>
                    <NavItem className="left active" >首页</NavItem>
                    <NavItem className="left download">下载App</NavItem>
