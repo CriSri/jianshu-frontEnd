@@ -18,7 +18,7 @@ import {
 } from './style'
 import {actionCreators} from './store'
 import {CSSTransition} from 'react-transition-group'
-import {Link  } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 class Header extends Component{
     getListArea = (show)=>{
         const {page,focused,list,mouseIn,totalpage,handleMouseEnter,handleMouseLeave,handleChangePage} = this.props
@@ -56,12 +56,15 @@ class Header extends Component{
          <HeaderWrapper>
                <GlobalStyle/>
                <Link to="/">
-                <Logo/>
+                    <Logo/>
                </Link>
                <Nav>
                    <NavItem className="left active" >首页</NavItem>
                    <NavItem className="left download">下载App</NavItem>
-                   <NavItem className="right">登陆</NavItem>
+                   <Link to="/login">
+                    <NavItem className="right">登陆</NavItem>
+                   </Link>
+                   
                    <NavItem className="right">
                        <i className="iconfont">&#xe601;</i>
                    </NavItem>
@@ -79,11 +82,16 @@ class Header extends Component{
                     </SearchWrapper>
                </Nav>
                <Addition>
-                    <Button className="writing">
-                        <i className="iconfont">&#xe605;</i>
-                        写文章
-                    </Button>
+                   <Link to="/editor">
+                        <Button className="writing">
+                            <i className="iconfont">&#xe605;</i>
+                            写文章
+                        </Button>
+                   </Link>
+                   <Link to="/register">
                     <Button className="reg">注册</Button>
+                   </Link>
+                    
                </Addition>
            </HeaderWrapper>
         )

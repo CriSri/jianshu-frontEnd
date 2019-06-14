@@ -11,14 +11,12 @@ import { actionCreators } from './store';
         this.props.getDetail()
      }
     render(){
-        console.log(this.props)
         return (
             <DetailWrapper>
                 <Header>
                     {this.props.title}
                 </Header>
                 <Content dangerouslySetInnerHTML={{__html: this.props.content}}></Content>
-                
             </DetailWrapper>
         )
     }

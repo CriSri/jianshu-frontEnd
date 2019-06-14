@@ -147,14 +147,14 @@ export const Addition = styled.div`
     top: 0;
     height: 58px;
     box-sizing: border-box;
-
+    
 `
 export const Button = styled.div`
     float:right;
     cursor: pointer;
     line-height:39px;
     padding: 0 20px;
-    margin-top: 15px;
+    margin-top: 7px;
     margin-right: 20px;
     border: 1px solid #ec6149;
     border-radius: 19px;

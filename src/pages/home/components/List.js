@@ -19,7 +19,7 @@ class List extends PureComponent {
                             <ListWrapper>
                                 <img className="pic" src={item.get('imgUrl')} alt=""/>
                                 <ListInfo key={item.get('id')}>
-                                    <a className="title" href="https://www.jianshu.com/">{item.get('title')}</a>
+                                    <p className="title">{item.get('title')}</p>
                                     <p className="desc">{item.get('desc')}</p>
                                 </ListInfo>
                                 
