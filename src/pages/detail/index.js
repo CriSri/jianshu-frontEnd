@@ -7,8 +7,13 @@ import {
 } from './style'
 import { actionCreators } from './store';
  class Detail extends Component {
+     constructor(props){
+        super(props)
+        this.postid = props.match.params.id
+        console.log(props.match.params.id)
+     }
      componentDidMount(){
-        this.props.getDetail()
+        this.props.getDetail(this.postid)
      }
     render(){
         return (
@@ -26,8 +31,8 @@ const mapState = (state) => ({
     content: state.getIn(['detail','content'])
 })
 const mapDispatch = (dispatch) => ({
-    getDetail(){
-        const action = actionCreators.getDetail();
+    getDetail(postid){
+        const action = actionCreators.getDetail(postid);
         dispatch(action);
     }
 })

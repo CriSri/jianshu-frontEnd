@@ -21,10 +21,10 @@ class App extends Component {
                       <Home></Home>
                     </div>
                   }></Route>
-                  <Route path='/detail/:id' render={()=>
+                  <Route path='/detail/:id' render={(props)=>
                     <div>
                       <Header></Header>
-                      <Detail/>
+                      <Detail {...props}/>
                     </div>
                   }></Route>
                   <Route path='/editor' component={Editor}></Route>

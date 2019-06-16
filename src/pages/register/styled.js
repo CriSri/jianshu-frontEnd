@@ -68,4 +68,18 @@ export const Formdata = styled.form`
     button:hover{
         background: #3db922;
     }
+    .ic-phone{
+        position: absolute;
+        top: 14px;
+        left: 10px;
+        font-size: 18px;
+        color: #969696;
+    }
+    .ic-pw{
+        position: absolute;
+        top: 14px;
+        left: 10px;
+        font-size: 18px;
+        color: #969696;
+    }
 `

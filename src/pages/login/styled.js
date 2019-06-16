@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 export const Container = styled.div`
     margin: 0 auto;
     padding: 50px;
@@ -33,6 +34,7 @@ export const LoginHeader = styled.h4`
 `
 export const Formdata = styled.form`
     display: block; 
+    position: relative;
     input{
         width: 100%;
         height: 50px;
@@ -63,5 +65,19 @@ export const Formdata = styled.form`
     }
     button:hover{
         background: #187cb7;
+    }
+   .iconUser{
+        position: absolute;
+        top: 14px;
+        left: 10px;
+        font-size: 18px;
+        color: #969696;
+    }
+    .iconPW{
+        position: absolute;
+        top: 14px;
+        left: 10px;
+        font-size: 18px;
+        color: #969696;
     }
 `

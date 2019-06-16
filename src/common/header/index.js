@@ -34,7 +34,7 @@ class Header extends Component{
        
         if(show || mouseIn){
             return <SearchInfo onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                        <SearchInfoTitle>
+                            <SearchInfoTitle>
                                     热门搜索
                             
                             <SearchInfoSwitch className='searchtitle' onClick={() => handleChangePage(page,totalpage,this.spinIcon)}>
